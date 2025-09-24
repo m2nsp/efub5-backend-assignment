@@ -1,7 +1,11 @@
 package efub.assignment.community.board.dto.Request;
 
 import efub.assignment.community.member.domain.Member;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@Builder
 // 게시판 생성 시 필요한 정보 받는 DTO
 public class BoardRequestDTO {
     private String boardName;
@@ -19,19 +23,19 @@ public class BoardRequestDTO {
     }
 
     //Getter
-    public String getBoardName() {
-        return boardName;
-    }
-
-    public String getAnnouncement() {
-        return announcement;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Long getMasterId() {
-        return masterId;
-    }
+//    public String getBoardName() {
+//        return boardName;
+//    }
+//
+//    public String getAnnouncement() {
+//        return announcement;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public Long getMasterId() {
+//        return masterId;
+//    }
 }

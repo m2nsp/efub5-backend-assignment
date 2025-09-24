@@ -1,5 +1,10 @@
 package efub.assignment.community.member.dto;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
 // 회원 가입 시 필요한 데이터 받는 DTO
 public class MemberRequestDTO {
     private String email;
@@ -20,23 +25,23 @@ public class MemberRequestDTO {
     }
 
     //Getter
-    public String getEmail(){
-        return email;
-    }
-
-    public String getStudentNumber(){
-        return studentNumber;
-    }
-
-    public String getNickname(){
-        return nickname;
-    }
-
-    public String getSchool(){
-        return school;
-    }
-
-    public String getPassword(){
-        return password;
-    }
+//    public String getEmail(){
+//        return email;
+//    }
+//
+//    public String getStudentNumber(){
+//        return studentNumber;
+//    }
+//
+//    public String getNickname(){
+//        return nickname;
+//    }
+//
+//    public String getSchool(){
+//        return school;
+//    }
+//
+//    public String getPassword(){
+//        return password;
+//    }
 }

@@ -63,4 +63,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.OK).body("댓글이 삭제되었습니다.");
     }
 
+    // 댓글 좋아요 기능 추가 : TDD
+
+
 }

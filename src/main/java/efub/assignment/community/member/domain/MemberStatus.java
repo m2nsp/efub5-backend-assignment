@@ -1,5 +1,5 @@
 package efub.assignment.community.member.domain;
 
-enum MemberStatus{
+public enum MemberStatus{
     ACTIVE, INACTIVE
 }

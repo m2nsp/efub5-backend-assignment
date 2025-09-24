@@ -1,5 +1,6 @@
 package efub.assignment.community.member.service;
 
+import efub.assignment.community.member.domain.MemberStatus;
 import efub.assignment.community.member.repository.MemberRepository;
 import efub.assignment.community.member.dto.MemberRequestDTO;
 import efub.assignment.community.member.domain.Member;
@@ -28,8 +29,8 @@ public class MemberService {
                 requestDTO.getNickname(),
                 requestDTO.getSchool(),
                 requestDTO.getEmail(),
-                requestDTO.getPassword()
-        );
+                requestDTO.getPassword(),
+                MemberStatus.ACTIVE);
         Member savedMember = memberRepository.save(newMember);
 
         return MemberResponseDTO.from(savedMember);
