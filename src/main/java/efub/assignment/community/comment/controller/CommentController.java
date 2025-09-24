@@ -1,10 +1,12 @@
 package efub.assignment.community.comment.controller;
 
 import efub.assignment.community.comment.domain.Comment;
+import efub.assignment.community.comment.dto.request.CommentLikeRequestDTO;
 import efub.assignment.community.comment.dto.request.CommentRequestDTO;
 import efub.assignment.community.comment.dto.request.CommentUpdateRequestDTO;
 import efub.assignment.community.comment.dto.response.CommentListResponseDTO;
 import efub.assignment.community.comment.dto.response.CommentResponseDTO;
+import efub.assignment.community.comment.service.CommentLikeService;
 import efub.assignment.community.comment.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CommentController {
     private final CommentService commentService;
-    public CommentController(CommentService commentService) {
+    private final CommentLikeService commentLikeService;
+
+    public CommentController(CommentService commentService, CommentLikeService commentLikeService) {
         this.commentService = commentService;
+        this.commentLikeService = commentLikeService;
     }
 
     //댓글 생성
@@ -64,6 +69,10 @@ public class CommentController {
     }
 
     // 댓글 좋아요 기능 추가 : TDD
-
+    @PostMapping("/comments/{commentId}/like")
+    public ResponseEntity<String> createCommentLike(CommentLikeRequestDTO requestDTO) {
+       String response = commentLikeService.createCommentLike(requestDTO);
+       return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 
 }
