@@ -1,4 +1,4 @@
-package efub.assignment.comment.domain;
+package efub.assignment.comment;
 
 import efub.assignment.community.board.domain.Board;
 import efub.assignment.community.comment.domain.Comment;
@@ -21,7 +21,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -106,8 +105,12 @@ public class CommentLikeTest {
                 });
 
         //When
-        String msg1 = commentLikeService.createCommentLike(requestDTO);
-        String msg2 = commentLikeService.createCommentLike(requestDTO);     //중복 좋아요 시도
+//        String msg1 = commentLikeService.createCommentLike(requestDTO);
+//        String msg2 = commentLikeService.createCommentLike(requestDTO);     //중복 좋아요 시도
+
+        String msg1 = commentLikeService.createCommentLike(comment.getCommentId(), member.getMemberId());
+        String msg2 = commentLikeService.createCommentLike(comment.getCommentId(), member.getMemberId());
+
 
         //Then
         assertEquals("좋아요가 생성되었습니다", msg1);

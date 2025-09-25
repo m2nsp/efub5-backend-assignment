@@ -69,10 +69,18 @@ public class CommentController {
     }
 
     // 댓글 좋아요 기능 추가 : TDD
+//    @PostMapping("/comments/{commentId}/like")
+//    public ResponseEntity<String> createCommentLike(CommentLikeRequestDTO requestDTO) {
+//       String response = commentLikeService.createCommentLike(requestDTO);
+//       return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//    }
+
+    // 댓글 좋아요 기능 추가 : TDD - 리팩터링 중
     @PostMapping("/comments/{commentId}/like")
-    public ResponseEntity<String> createCommentLike(CommentLikeRequestDTO requestDTO) {
-       String response = commentLikeService.createCommentLike(requestDTO);
-       return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<String> createCommentLike(@PathVariable Long commentId,
+                                                    @RequestHeader Long memberId) {
+        String response = commentLikeService.createCommentLike(commentId, memberId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }
