@@ -113,8 +113,12 @@ public class CommentLikeTest {
 
 
         //Then
-        assertEquals("좋아요가 생성되었습니다", msg1);
-        assertEquals("이미 좋아요를 누른 댓글입니다", msg2);
+        // assertEquals("좋아요가 생성되었습니다", msg1);
+        // assertEquals("이미 좋아요를 누른 댓글입니다", msg2);
+
+        //코드리뷰 반영 "문자열 그대로 비교하는 것은 권장 X -> .contains("좋아요")와 같이 부분 검증으로 변환"
+        assertTrue(msg1.contains("생성되었습니다"));
+        assertTrue(msg2.contains("이미 좋아요"));
         assertEquals(1, commentLikes.size());
 
 //        // save는 실제로 한 번만 호출되었어야 함 (중복이면 save하지 않도록 서비스가 구현 될 필요 有)
