@@ -1,5 +1,8 @@
 package efub.assignment.community.post.dto.request;
 
+import lombok.Builder;
+
+@Builder
 public class PostRequestDTO {
     private Long memberId;
     private boolean anonymity;

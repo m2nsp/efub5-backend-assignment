@@ -1,5 +1,6 @@
 package efub.assignment.community.member.controller;
 
+import efub.assignment.community.member.domain.DuplicateMemberEmailException;
 import efub.assignment.community.member.dto.MemberRequestDTO;
 import efub.assignment.community.member.dto.MemberResponseDTO;
 import efub.assignment.community.member.service.MemberService;
@@ -13,9 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MemberControllerTest_unitTest {
@@ -40,6 +41,19 @@ public class MemberControllerTest_unitTest {
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         Assertions.assertNotNull(result.getBody());     //NPE 방지용
         assertThat(result.getBody().getNickname()).isEqualTo("동길");
+        verify(memberService).registerMember(any(MemberRequestDTO.class));
+    }
+
+    @Test
+    public void 이미가입된_메일일경우_회원가입_실패() {
+        //given
+        MemberRequestDTO request = new MemberRequestDTO("test@ewhain.net", "2222222", "동길", "이대", "0000000");
+
+        when(memberService.registerMember(any(MemberRequestDTO.class))).thenThrow(IllegalArgumentException.class);
+
+        Assertions.assertNotNull(request);
+        assertThrows(DuplicateMemberEmailException.class, () -> memberController.registerMember(request));
+
         verify(memberService).registerMember(any(MemberRequestDTO.class));
     }
 }
